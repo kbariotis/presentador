@@ -1,8 +1,9 @@
 name: Release
-on:
-  push:
-    branches:
-      - master
+# Commenting it out for now till I figure our workflow
+# on:
+#   push:
+#     branches:
+#       - master
 jobs:
   release:
     name: Release

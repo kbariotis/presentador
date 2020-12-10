@@ -50,3 +50,35 @@ To develop locally your presentation.
 In both cases above, you need to pass a directory with a list of Markdown files.
 
 `> presentador build -d slides/`
+
+## Contributing
+
+We could use all the help we can get. So please feel free to go through our open [issues]('/issues') or create one if thought of a new cool feature or found a bug.
+
+### Run locally
+
+Running `Presentador` will be as easy as forking and cloning this repo, then running:
+
+`> yarn`
+
+`> yarn dev`
+
+The local dev server will run against the [fixtures](./fixtures) folder which contains a few example slides.
+
+### Compilation
+
+The process of compiling a presentation is actually quite simple. For each Markdown file you supply, `Presentador` will parse it and make a list of some specific elements.
+
+If then that list matches one of the below, it will pass them to the appropriate renderer and the renderer will decide how to lay them out and render them. If it doesn't matches any, the [normal renderer](./src/renderers/normal.js) will kick in.
+
+| List                                 | State Name                | Renderer                                                                  |
+| ------------------------------------ | ------------------------- | ------------------------------------------------------------------------- |
+| Header                               | singleHeader              | [singleHeader](./src/renderers/singleHeader.js)                           |
+| Header,Header                        | twoHeaders                | [twoHeaders](./src/renderers/twoHeaders.js)                               |
+| Header,Paragraph                     | headerParagraph           | [headerParagraph](./src/renderers/headerParagraph.js)                     |
+| Header,Paragraph,Image               | headerParagraphImage      | [headerParagraphImage](./src/renderers/headerParagraphImage.js)           |
+| Header,Paragraph,Paragraph,...       | headerManyParagraphs      | [headerManyParagraphs](./src/renderers/headerManyParagraphs.js)           |
+| Header,Paragraph,Paragraph,...,Image | headerManyParagraphsImage | [headerManyParagraphsImage](./src/renderers/headerManyParagraphsImage.js) |
+| Header,List                          | headerList                | [headerList](./src/renderers/headerList.js)                               |
+| Header,Image                         | headerImage               | [headerImage](./src/renderers/headerImage.js)                             |
+| Blockquote                           | blockquote                | [blockquote](./src/renderers/blockquote.js)                               |
