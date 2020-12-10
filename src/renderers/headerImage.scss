@@ -1,0 +1,39 @@
+@import "../client/vars.scss";
+@import "../client/helpers.scss";
+
+.headerImage {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  .top {
+    @extend .top-row-container;
+
+    background-color: $blue;
+    flex: 1;
+    display: flex;
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5 {
+      display: flex;
+      align-items: flex-end;
+      color: white;
+    }
+  }
+  .bottom {
+    @extend .bottom-row-container;
+
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    flex: 2;
+
+    img {
+      max-width: 80%;
+    }
+  }
+}

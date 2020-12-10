@@ -20,6 +20,7 @@ const renderer = () => {
         if (item.type === "heading") return "twoHeaders";
         if (item.type === "paragraph") return "headerSingleParagraph";
         if (item.type === "list") return "headerList";
+        if (item.type === "image") return "headerImage";
       },
     },
     headerSingleParagraph: {
