@@ -9,6 +9,18 @@ There is only a single layout depending on the elements of your slide. `Presenta
 
 ## Installation
 
+### Quick start
+
+Create a folder to put your slides. Create one file for each slide and give them a number which will be the order of that slide, e.g `1.md`, `2.md`...
+
+Write common Markdown in each slide, add your headers, paragraphs, images, etc. See some examples in the [fixtures/](./fixtures) folder.
+
+Then run:
+
+`npx presentador serve -d FOLDER`
+
+### Install locally
+
 `npm install presentador`
 
 or
@@ -19,19 +31,11 @@ Then add it to your `package.json`s' `scripts` section:
 
 ```JSON
 "scripts": {
-  "presentador": "presentador"
+  "presentador": "presentador ..."
 }
 ```
 
-or use `npx` directly:
-
-`npx presentador ...`
-
 ## Usage
-
-Create a folder where you will put your slides. Create one file for each slide and give them a number which will be the order of that slide, e.g `1.md`, `2.md`, etc..
-
-Write common Markdown in each slide, add your headers, paragraphs, images, etc. See some examples in the [fixtures/](./fixtures) folder.
 
 ### Commands
 
