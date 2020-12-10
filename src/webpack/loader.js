@@ -33,11 +33,21 @@ module.exports = function (source) {
   }
 
   const state = machine.getState();
-  const rendererFn = require(`../renderers/${state}`);
+  try {
+    const rendererFn = require(`../renderers/${state}`);
 
-  return `
-export const html = ${JSON.stringify(
-    `<div class="${state}">${rendererFn(machine.getItems())}</div>`
-  )};
-export const state = "${state}"`;
+    return `
+    export const html = ${JSON.stringify(
+      `<div class="${state}">${rendererFn(machine.getItems())}</div>`
+    )};
+      export const state = "${state}"`;
+  } catch (error) {
+    if (error.code === "MODULE_NOT_FOUND") {
+      this.emitError(new Error(`Can't find renderer for state "${state}"`));
+    } else {
+      this.emitError(error);
+    }
+
+    return "";
+  }
 };
