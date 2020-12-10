@@ -53,7 +53,7 @@ In both cases above, you need to pass a directory with a list of Markdown files.
 
 ## Contributing
 
-We could use all the help we can get. So please feel free to go through our open [issues]('/issues') or create one if thought of a new cool feature or found a bug.
+We could use all the help we can get. So please feel free to go through our open [issues]('https://github.com/kbariotis/presentador/issues') or create one if thought of a new cool feature or found a bug.
 
 ### Run locally
 
