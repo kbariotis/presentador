@@ -1,0 +1,24 @@
+@import "../client/vars.scss";
+@import "../client/helpers.scss";
+
+.blockquote {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  color: $textColor;
+
+  blockquote {
+    font-size: 48px;
+  }
+
+  .top {
+    @extend .top-row-container;
+  }
+
+  .bottom {
+    @extend .bottom-row-container;
+  }
+}

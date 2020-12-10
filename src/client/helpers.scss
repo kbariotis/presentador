@@ -1,0 +1,83 @@
+@import "./vars.scss";
+
+.left-column-container {
+  padding: 5em;
+  padding-left: 4%;
+
+  @media #{$mq-medium} {
+    padding-left: 8%;
+  }
+
+  @media #{$mq-large} {
+    padding-left: 12%;
+  }
+
+  @media #{$mq-xlarge} {
+    padding-left: 18%;
+  }
+}
+
+.right-column-container {
+  padding: 5em;
+  padding-right: 4%;
+
+  @media #{$mq-medium} {
+    padding-right: 8%;
+  }
+
+  @media #{$mq-large} {
+    padding-right: 12%;
+  }
+
+  @media #{$mq-xlarge} {
+    padding-right: 18%;
+  }
+}
+
+.top-row-container {
+  padding: 5em 4% 20px;
+
+  @media #{$mq-medium} {
+    padding: 5em 8% 20px;
+  }
+
+  @media #{$mq-large} {
+    padding: 5em 12% 20px;
+  }
+
+  @media #{$mq-xlarge} {
+    padding: 5em 18% 20px;
+  }
+}
+
+.bottom-row-container {
+  padding: 20px 4% 5em;
+
+  @media #{$mq-medium} {
+    padding: 20px 8% 5em;
+  }
+
+  @media #{$mq-large} {
+    padding: 20px 12% 5em;
+  }
+
+  @media #{$mq-xlarge} {
+    padding: 20px 18% 5em;
+  }
+}
+
+.container {
+  padding: 20px 4%;
+
+  @media #{$mq-medium} {
+    padding: 20px 8%;
+  }
+
+  @media #{$mq-large} {
+    padding: 20px 12%;
+  }
+
+  @media #{$mq-xlarge} {
+    padding: 20px 18%;
+  }
+}

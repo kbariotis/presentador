@@ -1,0 +1,55 @@
+@import "../client/vars.scss";
+@import "../client/helpers.scss";
+
+.headerManyParagraphsImage {
+  min-height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+
+  .left {
+    @extend .left-column-container;
+
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: $blue;
+    color: white;
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      flex: 1;
+      align-items: flex-end;
+      display: flex;
+      margin-bottom: 20px;
+    }
+
+    .paragraphs {
+      flex: 2;
+
+      p {
+        font-size: 18px;
+        line-height: 26px;
+        margin-bottom: 20px;
+      }
+    }
+  }
+
+  .right {
+    @extend .right-column-container;
+
+    flex: 2;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+
+    img {
+      width: 100%;
+    }
+  }
+}
