@@ -7,6 +7,7 @@ const renderer = () => {
     normal: {
       add: (item) => {
         if (item.type === "heading") return "singleHeader";
+        if (item.type === "image") return "image";
         if (item.type === "block_quote") return "blockquote";
       },
     },

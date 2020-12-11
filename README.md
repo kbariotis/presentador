@@ -88,3 +88,4 @@ If then that list matches one of the below, it will pass them to the appropriate
 | Header,List                          | headerList                | [headerList](./src/renderers/headerList.js)                               |
 | Header,Image                         | headerImage               | [headerImage](./src/renderers/headerImage.js)                             |
 | Blockquote                           | blockquote                | [blockquote](./src/renderers/blockquote.js)                               |
+| Image                                | image                     | [blockquote](./src/renderers/image.js)                                    |
