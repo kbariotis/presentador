@@ -1,6 +1,8 @@
 <h1 align="center" style="border-bottom: none;">📽 Presentador</h1>
 <h3 align="center">An opinionated presentation framework. Just write what you want to present and it will do the rest.</h3>
 
+![Presentador Demo](./assets/demo.gif)
+
 ## Description
 
 With `Presentador`, you describe the content of each of your slides using Markdown and it will produce a beautiful presentation ready to be hosted anywhere you want. Don't worry about how they're going to look, just focus on your presentation.
