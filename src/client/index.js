@@ -37,3 +37,20 @@ document.getElementsByTagName("body")[0].onkeydown = (event) => {
     page(`/${currentId - 1}`);
   }
 };
+
+const handleClick = (event) => {
+  const vw = Math.max(
+    document.documentElement.clientWidth || 0,
+    window.innerWidth || 0
+  );
+  const median = vw / 2;
+
+  if (event.clientX > median) {
+    page(`/${currentId + 1}`);
+  } else {
+    page(`/${currentId - 1}`);
+  }
+};
+
+document.onmouseup = handleClick;
+document.ontouchend = handleClick;
