@@ -1,11 +1,13 @@
 const compiler = require("../src/compiler");
-
 const codeMirror = require("codemirror");
+
 require("codemirror/lib/codemirror.css");
 require("codemirror/theme/base16-light.css");
 
 require("./index.scss");
 require(`../src/client/index.scss`);
+
+const params = new URLSearchParams(document.location.search);
 
 const codemirror = codeMirror(
   document.getElementsByClassName("playground-editor")[0],
@@ -14,7 +16,9 @@ const codemirror = codeMirror(
     lineNumbers: true,
     lineWrapping: true,
     autofocus: true,
-    value: `
+    value:
+      params.get("content") ||
+      `
 ## Presentation title
 
 ##### Description of the presentation
@@ -30,6 +34,9 @@ const showResults = (source) => {
   document.getElementsByClassName(
     "playground-results"
   )[0].innerHTML = `<div class="${state}">${html}</div>`;
+
+  params.set("content", source);
+  window.history.replaceState(null, null, `?${params.toString()}`);
 };
 
 showResults(codemirror.getValue());
