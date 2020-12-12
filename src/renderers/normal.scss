@@ -2,10 +2,10 @@
 @import "../client/helpers.scss";
 
 .normal {
+  @extend .container;
   @include light-arrows;
 
   background-color: $blue;
   color: white;
-  padding: 40px;
   min-height: 100%;
 }

@@ -4,10 +4,6 @@
 .singleHeader {
   @include light-arrows;
 
-  .container {
-    @extend .container;
-  }
-
   background-color: $blue;
   color: white;
 
@@ -22,6 +18,10 @@
   h4,
   h5,
   h6 {
-    margin-right: 50%;
+    @include margin-right(8rem);
+  }
+
+  .container {
+    @extend .container;
   }
 }

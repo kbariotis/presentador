@@ -13,7 +13,7 @@
   color: $textColor;
 
   blockquote {
-    font-size: 48px;
+    @include font-size(4rem);
   }
 
   .top {
@@ -22,5 +22,7 @@
 
   .bottom {
     @extend .bottom-row-container;
+
+    @include font-size(2rem);
   }
 }

@@ -33,14 +33,12 @@
 
     ul,
     li {
-      font-size: 24px;
       color: $textColor;
-      line-height: 32px;
       list-style-type: circle;
-      margin-left: 10px;
+      @include margin-left(1rem);
 
       li {
-        margin-bottom: 20px;
+        @include margin-bottom(1rem);
       }
     }
   }

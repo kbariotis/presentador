@@ -14,7 +14,6 @@ module.exports = (source) => {
   while ((event = walker.next())) {
     const node = event.node;
     if (event.entering) {
-      // console.log("Walking into node", node.type);
       if (
         ["heading", "paragraph", "list", "image", "block_quote"].includes(
           node.type
@@ -24,6 +23,9 @@ module.exports = (source) => {
         if (node.firstChild.type === "image") {
           node.insertAfter(node.firstChild);
           node.unlink();
+        } else if (node.type === "block_quote") {
+          node.firstChild.firstChild.literal = `"${node.firstChild.firstChild.literal}"`;
+          machine.add(node);
         } else {
           machine.add(node);
         }

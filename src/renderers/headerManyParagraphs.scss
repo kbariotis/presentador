@@ -34,10 +34,8 @@
     flex: 2;
 
     p {
-      margin-bottom: 20px;
+      @include margin-bottom(1rem);
       color: $textColor;
-      font-size: 18px;
-      line-height: 26px;
     }
   }
 }

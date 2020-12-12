@@ -1,84 +1,93 @@
 @import "./vars.scss";
 
+@import "~rfs/scss";
+
 .left-column-container {
-  padding: 5em;
-  padding-left: 4%;
+  @include padding(2rem);
 
   @media #{$mq-medium} {
-    padding-left: 8%;
+    @include padding-left(2.5rem);
   }
 
   @media #{$mq-large} {
-    padding-left: 12%;
+    @include padding-left(3rem);
   }
 
   @media #{$mq-xlarge} {
-    padding-left: 18%;
+    @include padding-left(3.5rem);
   }
 }
 
 .right-column-container {
-  padding: 5em;
-  padding-right: 4%;
+  @include padding(2rem);
 
   @media #{$mq-medium} {
-    padding-right: 8%;
+    @include padding-right(2.5rem);
   }
 
   @media #{$mq-large} {
-    padding-right: 12%;
+    @include padding-right(3rem);
   }
 
   @media #{$mq-xlarge} {
-    padding-right: 18%;
+    @include padding-right(3.5rem);
   }
 }
 
 .top-row-container {
-  padding: 5em 4% 20px;
+  @include padding(2rem);
 
   @media #{$mq-medium} {
-    padding: 5em 8% 20px;
+    @include padding-left(2.5rem);
+    @include padding-right(2.5rem);
   }
 
   @media #{$mq-large} {
-    padding: 5em 12% 20px;
+    @include padding-left(3rem);
+    @include padding-right(3rem);
   }
 
   @media #{$mq-xlarge} {
-    padding: 5em 18% 20px;
+    @include padding-left(3.5rem);
+    @include padding-right(3.5rem);
   }
 }
 
 .bottom-row-container {
-  padding: 20px 4% 5em;
+  @include padding(2rem);
 
   @media #{$mq-medium} {
-    padding: 20px 8% 5em;
+    @include padding-left(2.5rem);
+    @include padding-right(2.5rem);
   }
 
   @media #{$mq-large} {
-    padding: 20px 12% 5em;
+    @include padding-left(3rem);
+    @include padding-right(3rem);
   }
 
   @media #{$mq-xlarge} {
-    padding: 20px 18% 5em;
+    @include padding-left(3.5rem);
+    @include padding-right(3.5rem);
   }
 }
 
 .container {
-  padding: 20px 4%;
+  @include padding(2rem);
 
   @media #{$mq-medium} {
-    padding: 20px 8%;
+    @include padding(2.5rem);
+    @include padding(2.5rem);
   }
 
   @media #{$mq-large} {
-    padding: 20px 12%;
+    @include padding(3rem);
+    @include padding(3rem);
   }
 
   @media #{$mq-xlarge} {
-    padding: 20px 18%;
+    @include padding(3.5rem);
+    @include padding(3.5rem);
   }
 }
 

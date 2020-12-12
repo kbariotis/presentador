@@ -28,16 +28,14 @@
       flex: 1;
       align-items: flex-end;
       display: flex;
-      margin-bottom: 20px;
+      @include margin-bottom(1rem);
     }
 
     .paragraphs {
       flex: 2;
 
       p {
-        font-size: 18px;
-        line-height: 26px;
-        margin-bottom: 20px;
+        @include margin-bottom(1rem);
       }
     }
   }
