@@ -32,6 +32,7 @@ const renderer = () => {
         if (item.type === "paragraph") return "headerSingleParagraph";
         if (item.type === "list") return "headerList";
         if (item.type === "image") return "headerImage";
+        if (item.type === "code_block") return "headerCodeblock";
       },
     },
     headerSingleParagraph: {

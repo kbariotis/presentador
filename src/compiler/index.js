@@ -15,12 +15,17 @@ module.exports = (source) => {
     const node = event.node;
     if (event.entering) {
       if (
-        ["heading", "paragraph", "list", "image", "block_quote"].includes(
-          node.type
-        ) &&
+        [
+          "heading",
+          "paragraph",
+          "list",
+          "image",
+          "block_quote",
+          "code_block",
+        ].includes(node.type) &&
         node.parent.type === "document"
       ) {
-        if (node.firstChild.type === "image") {
+        if (node.firstChild && node.firstChild.type === "image") {
           node.insertAfter(node.firstChild);
           node.unlink();
         } else if (node.type === "block_quote") {

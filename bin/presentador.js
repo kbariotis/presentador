@@ -2,7 +2,7 @@
 
 const webpack = require("webpack");
 const path = require("path");
-const config = require("../src/webpack/webpack.config.js");
+const getConfig = require("../src/webpack/webpack.config.js");
 const WebpackDevServer = require("webpack-dev-server");
 
 require("yargs/yargs")(process.argv.slice(2))
@@ -19,16 +19,16 @@ require("yargs/yargs")(process.argv.slice(2))
       },
     },
     async (argv) => {
+      const config = getConfig({ production: true });
       config.plugins[0] = new webpack.DefinePlugin({
         PATH: JSON.stringify(path.resolve(argv.directory)),
       });
-      config.mode = "production";
       const compiler = webpack(config);
 
       const stats = await new Promise((resolve, reject) => {
         compiler.run((err, stats) => {
           if (err) reject(err);
-          if (stats.hasErrors()) {
+          if (stats && stats.hasErrors()) {
             console.log(stats.toJson());
             reject(new Error(stats.toJson().errors));
           }
@@ -39,11 +39,11 @@ require("yargs/yargs")(process.argv.slice(2))
 
       const info = stats.toJson();
 
-      if (stats.hasErrors()) {
+      if (stats && stats.hasErrors()) {
         console.error(info.errors);
       }
 
-      if (stats.hasWarnings()) {
+      if (stats && stats.hasWarnings()) {
         console.warn(info.warnings);
       }
     }
@@ -60,10 +60,10 @@ require("yargs/yargs")(process.argv.slice(2))
       },
     },
     async (argv) => {
+      const config = getConfig({});
       config.plugins[0] = new webpack.DefinePlugin({
         PATH: JSON.stringify(path.resolve(argv.directory)),
       });
-      config.mode = "production";
       const compiler = webpack(config);
 
       const server = new WebpackDevServer(compiler);

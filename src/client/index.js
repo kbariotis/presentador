@@ -1,4 +1,16 @@
+require("highlight.js/styles/github.css");
+
 const page = require("page");
+
+const hljs = require("highlight.js/lib/core");
+hljs.registerLanguage(
+  "javascript",
+  require("highlight.js/lib/languages/javascript")
+);
+hljs.registerLanguage(
+  "javascript",
+  require("highlight.js/lib/languages/markdown")
+);
 
 let currentId = 1;
 
@@ -11,9 +23,13 @@ function showPage(props) {
       require(`../renderers/${state}.scss`);
       document.getElementsByClassName("slides")[0].outerHTML = html;
 
+      const codeBlocks = document.querySelectorAll("pre code");
+      if (codeBlocks.length) {
+        hljs.highlightBlock(codeBlocks[0]);
+      }
       currentId = parseInt(props.params.id, 10);
-    } catch (e) {
-      console.log(`${props.params.id} slide not found.`);
+    } catch (error) {
+      console.error(error);
     }
   }
 }
@@ -55,11 +71,11 @@ document.getElementsByTagName("body")[0].onkeydown = (event) => {
 };
 
 const handleClick = (event) => {
-  event.preventDefault();
-
   const bodyEl = document.getElementsByClassName("slides")[0];
 
-  if (bodyEl.contains(event.target)) {
+  if (event.target.tagName === "A") {
+    console.log(1);
+  } else if (bodyEl.contains(event.target)) {
     const vw = Math.max(
       document.documentElement.clientWidth || 0,
       window.innerWidth || 0
