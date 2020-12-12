@@ -16,6 +16,16 @@ const renderer = () => {
         if (item.type === "paragraph") return "blockquote";
       },
     },
+    image: {
+      add: (item) => {
+        if (item.type === "image") return "manyImages";
+      },
+    },
+    manyImages: {
+      add: (item) => {
+        if (item.type === "image") return "manyImages";
+      },
+    },
     singleHeader: {
       add: (item) => {
         if (item.type === "heading") return "twoHeaders";
