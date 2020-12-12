@@ -41,6 +41,9 @@ jobs:
         env:
           WEBPACK_MODE: production
 
+      - name: Build website
+        run: ./bin/presentador build -d website
+
       - name: Deploy to GH Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
