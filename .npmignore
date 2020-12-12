@@ -1,4 +1,5 @@
 fixtures/
 playground/
+assets/
 
 **/*.test.js
