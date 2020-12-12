@@ -6,7 +6,7 @@ module.exports = function (source) {
 
     return `
     export const html = ${JSON.stringify(
-      `<div class="${state}">${html}</div>`
+      `<div class="slides ${state}">${html}</div>`
     )};
       export const state = "${state}"`;
   } catch (error) {

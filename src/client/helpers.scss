@@ -81,3 +81,41 @@
     padding: 20px 18%;
   }
 }
+
+@mixin light-arrows {
+  & ~ .arrow-right {
+    border-left-color: rgba(255, 255, 255, 0.2);
+    &.active,
+    &:hover {
+      border-left-color: rgba(255, 255, 255, 0.5);
+    }
+  }
+
+  & ~ .arrow-left {
+    border-right-color: rgba(255, 255, 255, 0.2);
+
+    &.active,
+    &:hover {
+      border-right-color: rgba(255, 255, 255, 0.5);
+    }
+  }
+}
+
+@mixin dark-arrows {
+  & ~ .arrow-right {
+    border-left-color: rgba(0, 0, 0, 0.2);
+    &.active,
+    &:hover {
+      border-left-color: rgba(0, 0, 0, 0.5);
+    }
+  }
+
+  & ~ .arrow-left {
+    border-right-color: rgba(0, 0, 0, 0.2);
+
+    &.active,
+    &:hover {
+      border-right-color: rgba(0, 0, 0, 0.5);
+    }
+  }
+}

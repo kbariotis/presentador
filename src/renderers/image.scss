@@ -2,6 +2,8 @@
 @import "../client/helpers.scss";
 
 .image {
+  @include dark-arrows;
+
   min-height: 100%;
   display: flex;
   flex-direction: column;

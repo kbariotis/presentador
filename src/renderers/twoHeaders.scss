@@ -2,6 +2,8 @@
 @import "../client/helpers.scss";
 
 .twoHeaders {
+  @include light-arrows;
+
   background-color: $blue;
   color: white;
 

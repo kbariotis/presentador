@@ -25,6 +25,8 @@ module.exports = {
     new webpack.DefinePlugin({
       PATH: JSON.stringify(path.resolve("fixtures/")),
     }),
-    new HtmlWebpackPlugin(),
+    new HtmlWebpackPlugin({
+      template: path.resolve(`${__dirname}/index.html`),
+    }),
   ],
 };

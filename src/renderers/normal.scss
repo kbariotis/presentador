@@ -1,6 +1,9 @@
 @import "../client/vars.scss";
+@import "../client/helpers.scss";
 
 .normal {
+  @include light-arrows;
+
   background-color: $blue;
   color: white;
   padding: 40px;

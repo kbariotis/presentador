@@ -2,6 +2,8 @@
 @import "../client/helpers.scss";
 
 .headerList {
+  @include dark-arrows;
+
   min-height: 100%;
   display: flex;
   flex-direction: column;

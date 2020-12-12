@@ -35,6 +35,10 @@ body {
   }
 }
 
+.slides {
+  height: 100%;
+}
+
 h1 {
   font-size: 48px;
   line-height: 60px;
@@ -58,4 +62,46 @@ h5 {
 h6 {
   font-size: 24px;
   line-height: 28px;
+}
+
+.arrow {
+  position: absolute;
+  bottom: 50px;
+}
+
+.arrow-right {
+  right: 50px;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 60px;
+
+  border-top-color: transparent;
+  border-bottom-color: transparent;
+
+  border-right: none;
+
+  border-left-color: rgba(255, 255, 255, 0.2);
+  &:hover {
+    border-left-color: rgba(255, 255, 255, 0.7);
+  }
+}
+
+.arrow-left {
+  right: 120px;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 60px;
+
+  border-top-color: transparent;
+  border-bottom-color: transparent;
+  border-left: none;
+
+  border-right-color: rgba(255, 255, 255, 0.2);
+
+  &:hover {
+    cursor: pointer;
+    border-right-color: rgba(255, 255, 255, 0.7);
+  }
 }

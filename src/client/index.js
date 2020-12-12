@@ -9,7 +9,7 @@ function showPage(props) {
     try {
       const { html, state } = require(`${PATH}/${props.params.id}.md`);
       require(`../renderers/${state}.scss`);
-      document.getElementsByTagName("body")[0].innerHTML = html;
+      document.getElementsByClassName("slides")[0].outerHTML = html;
 
       currentId = parseInt(props.params.id, 10);
     } catch (e) {
@@ -29,11 +29,23 @@ page({
   hashbang: true,
 });
 
+document.getElementsByTagName("body")[0].onkeyup = (event) => {
+  if (event.key === "ArrowRight") {
+    document
+      .getElementsByClassName("arrow-right")[0]
+      .classList.remove("active");
+  }
+  if (event.key === "ArrowLeft") {
+    document.getElementsByClassName("arrow-left")[0].classList.remove("active");
+  }
+};
 document.getElementsByTagName("body")[0].onkeydown = (event) => {
   if (event.key === "ArrowRight") {
+    document.getElementsByClassName("arrow-right")[0].classList.add("active");
     page(`/${currentId + 1}`);
   }
   if (event.key === "ArrowLeft") {
+    document.getElementsByClassName("arrow-left")[0].classList.add("active");
     page(`/${currentId - 1}`);
   }
 };
@@ -46,11 +58,21 @@ const handleClick = (event) => {
   const median = vw / 2;
 
   if (event.clientX > median) {
+    document.getElementsByClassName("arrow-right")[0].classList.add("active");
     page(`/${currentId + 1}`);
   } else {
+    document.getElementsByClassName("arrow-left")[0].classList.add("active");
     page(`/${currentId - 1}`);
   }
 };
 
-document.onmouseup = handleClick;
-document.ontouchend = handleClick;
+const clearAfterClick = () => {
+  document.getElementsByClassName("arrow-left")[0].classList.remove("active");
+  document.getElementsByClassName("arrow-right")[0].classList.remove("active");
+};
+
+document.onmousedown = handleClick;
+document.ontouchstart = handleClick;
+
+document.ontouchend = clearAfterClick;
+document.onmouseup = clearAfterClick;
