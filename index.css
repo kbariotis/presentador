@@ -1,0 +1,134 @@
+@import url(https://fonts.googleapis.com/css2?family=Roboto&display=swap);
+
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+body {
+  line-height: 1;
+}
+ol,
+ul {
+  list-style: none;
+}
+blockquote,
+q {
+  quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+*{box-sizing:border-box}html,body{height:100%;font-family:"Roboto",sans-serif;font-size:1em;line-height:1.5}@media(min-width: 64em){html,body{font-size:1.2em;line-height:1.8}}@media(min-width: 85.375em){html,body{font-size:1.3em}}@media(min-width: 120em){html,body{font-size:1.4em}}@media(min-width: 160em){html,body{font-size:1.6em}}h1{font-size:48px;line-height:60px}h2{font-size:42px;line-height:52px}h3{font-size:38px;line-height:46px}h4{font-size:32px;line-height:40px}h5{font-size:28px;line-height:34px}h6{font-size:24px;line-height:28px}
+.left-column-container{padding:5em;padding-left:4%}@media(min-width: 64em){.left-column-container{padding-left:8%}}@media(min-width: 85.375em){.left-column-container{padding-left:12%}}@media(min-width: 120em){.left-column-container{padding-left:18%}}.right-column-container{padding:5em;padding-right:4%}@media(min-width: 64em){.right-column-container{padding-right:8%}}@media(min-width: 85.375em){.right-column-container{padding-right:12%}}@media(min-width: 120em){.right-column-container{padding-right:18%}}.top-row-container,.headerList .top{padding:5em 4% 20px}@media(min-width: 64em){.top-row-container,.headerList .top{padding:5em 8% 20px}}@media(min-width: 85.375em){.top-row-container,.headerList .top{padding:5em 12% 20px}}@media(min-width: 120em){.top-row-container,.headerList .top{padding:5em 18% 20px}}.bottom-row-container,.headerList .bottom{padding:20px 4% 5em}@media(min-width: 64em){.bottom-row-container,.headerList .bottom{padding:20px 8% 5em}}@media(min-width: 85.375em){.bottom-row-container,.headerList .bottom{padding:20px 12% 5em}}@media(min-width: 120em){.bottom-row-container,.headerList .bottom{padding:20px 18% 5em}}.container{padding:20px 4%}@media(min-width: 64em){.container{padding:20px 8%}}@media(min-width: 85.375em){.container{padding:20px 12%}}@media(min-width: 120em){.container{padding:20px 18%}}.headerList{min-height:100%;display:flex;flex-direction:column;justify-content:center}.headerList .top{background-color:#4285f4;flex:1;display:flex}.headerList .top h1,.headerList .top h2,.headerList .top h3,.headerList .top h4,.headerList .top h5{display:flex;align-items:flex-end;color:#fff}.headerList .bottom{flex:2}.headerList .bottom ul,.headerList .bottom li{font-size:24px;color:#737373;line-height:32px;list-style-type:circle;margin-left:10px}.headerList .bottom ul li,.headerList .bottom li li{margin-bottom:20px}
