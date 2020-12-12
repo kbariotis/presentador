@@ -39,7 +39,7 @@ jobs:
       - name: Build playground
         run: ./node_modules/.bin/webpack -c playground/webpack.config.js
         env:
-          WEPBACK_MODE: production
+          WEBPACK_MODE: production
 
       - name: Deploy to GH Pages
         uses: peaceiris/actions-gh-pages@v3

@@ -1,8 +1,9 @@
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const path = require("path");
 
-module.exports = {
-  mode: process.env.WEPBACK_MODE || "development",
+const config = {
+  mode: process.env.WEBPACK_MODE || "development",
   entry: {
     playground: path.resolve(`${__dirname}/playground.js`),
     index: path.resolve(`${__dirname}/index.js`),
@@ -11,11 +12,22 @@ module.exports = {
     rules: [
       {
         test: /\.s[ac]ss$/i,
-        use: ["style-loader", "css-loader", "sass-loader"],
+        use: [
+          process.env.WEBPACK_MODE === "production"
+            ? MiniCssExtractPlugin.loader
+            : "style-loader",
+          "css-loader",
+          "sass-loader",
+        ],
       },
       {
         test: /\.css$/i,
-        use: ["style-loader", "css-loader"],
+        use: [
+          process.env.WEBPACK_MODE === "production"
+            ? MiniCssExtractPlugin.loader
+            : "style-loader",
+          "css-loader",
+        ],
       },
     ],
   },
@@ -35,3 +47,11 @@ module.exports = {
     }),
   ],
 };
+
+console.log(config.module.rules);
+
+if (process.env.WEBPACK_MODE === "production") {
+  config.plugins.push(new MiniCssExtractPlugin());
+}
+
+module.exports = config;
