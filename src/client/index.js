@@ -46,8 +46,6 @@ page({
 });
 
 document.getElementsByTagName("body")[0].onkeyup = (event) => {
-  event.preventDefault();
-
   if (event.key === "ArrowRight") {
     document
       .getElementsByClassName("arrow-right")[0]
@@ -60,8 +58,6 @@ document.getElementsByTagName("body")[0].onkeyup = (event) => {
   }
 };
 document.getElementsByTagName("body")[0].onkeydown = (event) => {
-  event.preventDefault();
-
   if (event.key === "ArrowRight") {
     document.getElementsByClassName("arrow-right")[0].classList.add("active");
   }
