@@ -90,3 +90,4 @@ If then that list matches one of the below, it will pass them to the appropriate
 | Blockquote                           | blockquote                | [blockquote](./src/renderers/blockquote.js)                               |
 | Image                                | image                     | [image](./src/renderers/image.js)                                         |
 | Image,Image,...                      | manyImages                | [manyImages](./src/renderers/manyImages.js)                               |
+| Header,Codeblock                     | headerCodeblock           | [headerCodeblock](./src/renderers/headerCodeblock.js)                     |
