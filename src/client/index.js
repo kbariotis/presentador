@@ -1,3 +1,4 @@
+const screenfull = require("screenfull");
 const page = require("page");
 
 let currentId = 1;
@@ -43,6 +44,7 @@ const slideTo = (id) => {
 const bodyEl = document.getElementsByTagName("body")[0];
 const arrowLeftEl = document.getElementsByClassName("arrow-left")[0];
 const arrowRightEl = document.getElementsByClassName("arrow-right")[0];
+const fullScreenEl = document.getElementsByClassName("arrow-fullscreen")[0];
 
 bodyEl.onkeyup = (event) => {
   if (event.key === "ArrowRight") {
@@ -64,12 +66,13 @@ bodyEl.onkeydown = (event) => {
 };
 
 const handleClick = (event) => {
-  const bodyEl = document.getElementsByClassName("slides")[0];
+  const slidesContainerEl = document.getElementsByClassName("slides")[0];
+  const iconsIslandEl = document.getElementsByClassName("icons")[0];
 
-  if (event.target.tagName === "A") {
-    // Do not interfere with links
+  if (event.target.tagName === "A" || iconsIslandEl.contains(event.target)) {
+    // Do not interfere with links or the icons island
     return;
-  } else if (bodyEl.contains(event.target)) {
+  } else if (slidesContainerEl.contains(event.target)) {
     // If It's anywhere else in the page
     const vw = Math.max(
       document.documentElement.clientWidth || 0,
@@ -94,13 +97,28 @@ const clearAfterClick = () => {
   arrowRightEl.classList.remove("active");
 };
 
-arrowRightEl.onclick = (event) => {
+arrowRightEl.onmouseup = clearAfterClick;
+arrowLeftEl.onmouseup = clearAfterClick;
+arrowRightEl.onclick = (event) => event.preventDefault();
+arrowLeftEl.onclick = (event) => event.preventDefault();
+fullScreenEl.onclick = (event) => event.preventDefault();
+fullScreenEl.onmouseup = () => {
+  fullScreenEl.classList.remove("active");
+  if (screenfull.isEnabled) {
+    screenfull.request();
+  }
+};
+fullScreenEl.onmousedown = (event) => {
+  event.preventDefault();
+  fullScreenEl.classList.add("active");
+};
+arrowRightEl.onmousedown = (event) => {
   event.preventDefault();
   arrowRightEl.classList.add("active");
   slideTo(currentId + 1);
   return;
 };
-arrowLeftEl.onclick = (event) => {
+arrowLeftEl.onmousedown = (event) => {
   event.preventDefault();
   arrowLeftEl.classList.add("active");
   slideTo(currentId - 1);

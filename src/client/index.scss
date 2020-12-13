@@ -55,44 +55,28 @@ a {
   color: #51c2f7;
 }
 
-.arrow {
+.icons {
   position: absolute;
-  bottom: 50px;
-}
 
-.arrow-right {
-  right: 50px;
-  width: 0;
-  height: 0;
-  border-style: solid;
-  border-width: 60px;
+  @include rfs(2rem, bottom);
+  @include rfs(2rem, right);
 
-  border-top-color: transparent;
-  border-bottom-color: transparent;
+  a {
+    display: inline-block;
+    margin-left: 10px;
 
-  border-right: none;
+    &.active,
+    &:hover {
+      svg {
+        fill: rgba(0, 0, 0, 0.7);
+      }
+    }
 
-  border-left-color: rgba(255, 255, 255, 0.2);
-  &:hover {
-    border-left-color: rgba(255, 255, 255, 0.7);
-  }
-}
+    svg {
+      fill: rgba(0, 0, 0, 0.3);
 
-.arrow-left {
-  right: 120px;
-  width: 0;
-  height: 0;
-  border-style: solid;
-  border-width: 60px;
-
-  border-top-color: transparent;
-  border-bottom-color: transparent;
-  border-left: none;
-
-  border-right-color: rgba(255, 255, 255, 0.2);
-
-  &:hover {
-    cursor: pointer;
-    border-right-color: rgba(255, 255, 255, 0.7);
+      @include rfs(4rem, height);
+      @include rfs(4rem, width);
+    }
   }
 }
