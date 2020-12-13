@@ -4,6 +4,7 @@
 
 @import "./vars.scss";
 
+$rfs-base-value: 0.5rem;
 $rfs-breakpoint: 3200px;
 $rfs-factor: 20;
 
@@ -21,8 +22,8 @@ body {
 body {
   font-family: "Roboto", sans-serif;
 
-  @include font-size(3rem);
-  @include rfs(3rem, line-height);
+  @include font-size(3.5rem);
+  @include rfs(4rem, line-height);
 }
 
 .slides {
