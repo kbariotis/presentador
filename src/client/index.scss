@@ -54,29 +54,3 @@ h6 {
 a {
   color: #51c2f7;
 }
-
-.icons {
-  position: absolute;
-
-  @include rfs(2rem, bottom);
-  @include rfs(2rem, right);
-
-  a {
-    display: inline-block;
-    margin-left: 10px;
-
-    &.active,
-    &:hover {
-      svg {
-        fill: rgba(0, 0, 0, 0.7);
-      }
-    }
-
-    svg {
-      fill: rgba(0, 0, 0, 0.3);
-
-      @include rfs(4rem, height);
-      @include rfs(4rem, width);
-    }
-  }
-}

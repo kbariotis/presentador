@@ -1,0 +1,50 @@
+.icons {
+  position: absolute;
+
+  @include rfs(2rem, bottom);
+  @include rfs(2rem, right);
+
+  a {
+    display: inline-block;
+    @include rfs(0.5rem, margin-left);
+
+    svg {
+      @include rfs(4rem, height);
+      @include rfs(4rem, width);
+    }
+  }
+}
+
+@mixin light-arrows {
+  & ~ .icons {
+    a {
+      &.active,
+      &:hover {
+        svg {
+          fill: rgba(255, 255, 255, 0.7);
+        }
+      }
+
+      svg {
+        fill: rgba(255, 255, 255, 0.3);
+      }
+    }
+  }
+}
+
+@mixin dark-arrows {
+  & ~ .icons {
+    a {
+      &.active,
+      &:hover {
+        svg {
+          fill: rgba(0, 0, 0, 0.7);
+        }
+      }
+
+      svg {
+        fill: rgba(0, 0, 0, 0.3);
+      }
+    }
+  }
+}
