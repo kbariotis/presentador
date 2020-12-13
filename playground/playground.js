@@ -1,9 +1,9 @@
-const compiler = require("../src/compiler");
 const codeMirror = require("codemirror");
+const renderSlide = require("../src/client/renderSlide");
+const compiler = require("../src/compiler");
 
 require("codemirror/lib/codemirror.css");
 require("codemirror/theme/base16-light.css");
-
 require("./playground.scss");
 require(`../src/client/index.scss`);
 
@@ -19,9 +19,9 @@ const codemirror = codeMirror(
     value:
       params.get("content") ||
       `
-## Presentation title
+## Slide title
 
-##### Description of the presentation
+Description of this slide
 `,
   }
 );
@@ -30,10 +30,11 @@ codemirror.on("change", (instance) => showResults(instance.getValue()));
 
 const showResults = (source) => {
   const { html, state } = compiler(source);
-  require(`../src/renderers/${state}.scss`);
-  document.getElementsByClassName(
-    "playground-results"
-  )[0].innerHTML = `<div class="${state}">${html}</div>`;
+  renderSlide(
+    document.getElementsByClassName("slides")[0],
+    state,
+    `<div class="slides ${state}">${html}</div>`
+  );
 
   params.set("content", source);
   window.history.replaceState(null, null, `?${params.toString()}`);

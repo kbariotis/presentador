@@ -1,32 +1,16 @@
-require("highlight.js/styles/github.css");
-
 const page = require("page");
-
-const hljs = require("highlight.js/lib/core");
-hljs.registerLanguage(
-  "javascript",
-  require("highlight.js/lib/languages/javascript")
-);
-hljs.registerLanguage(
-  "javascript",
-  require("highlight.js/lib/languages/markdown")
-);
 
 let currentId = 1;
 
-require("./index.scss");
+const renderSlide = require("./renderSlide");
 
 function showPage(props) {
   if (props.params.id) {
     try {
       const { html, state } = require(`${PATH}/${props.params.id}.md`); // eslint-disable-line
-      require(`../renderers/${state}.scss`);
-      document.getElementsByClassName("slides")[0].outerHTML = html;
 
-      const codeBlocks = document.querySelectorAll("pre code");
-      if (codeBlocks.length) {
-        hljs.highlightBlock(codeBlocks[0]);
-      }
+      renderSlide(document.getElementsByClassName("slides")[0], state, html);
+
       currentId = parseInt(props.params.id, 10);
     } catch (error) {
       console.error(error);
