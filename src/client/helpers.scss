@@ -35,6 +35,8 @@
 }
 
 .top-row-container {
+  box-shadow: 0px 2px 5px 1px rgba(0, 0, 0, 0.3);
+
   @include padding(2rem);
 
   @media #{$mq-medium} {
