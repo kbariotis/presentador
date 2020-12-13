@@ -1,6 +1,6 @@
 {
   "name": "presentador",
-  "version": "1.4.3",
+  "version": "1.4.4",
   "bin": {
     "presentador": "bin/presentador.js"
   },
