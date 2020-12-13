@@ -69,7 +69,11 @@ Running `Presentador` will be as easy as forking and cloning this repo, then run
 
 `> yarn dev`
 
-The local dev server will run against the [fixtures](./fixtures) folder which contains a few example slides.
+The local dev server will run against the [fixtures](./website) folder which contains Presentadors' website. You can also the [fixtures](./fixtures) folder for more examples and testing.
+
+To run the playground:
+
+`> yarn playground`
 
 ### Compilation
 

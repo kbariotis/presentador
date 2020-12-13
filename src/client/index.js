@@ -19,7 +19,7 @@ require("./index.scss");
 function showPage(props) {
   if (props.params.id) {
     try {
-      const { html, state } = require(`${PATH}/${props.params.id}.md`);
+      const { html, state } = require(`${PATH}/${props.params.id}.md`); // eslint-disable-line
       require(`../renderers/${state}.scss`);
       document.getElementsByClassName("slides")[0].outerHTML = html;
 

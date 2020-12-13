@@ -1,8 +1,11 @@
 const compiler = require("../compiler");
 
 module.exports = function (source) {
+  let state = "";
   try {
-    const { state, html } = compiler(source);
+    const results = compiler(source);
+    state = results.state;
+    const html = results.html;
 
     return `
     export const html = ${JSON.stringify(

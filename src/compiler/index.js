@@ -1,6 +1,6 @@
 const commonmark = require("commonmark");
 
-const { renderer } = require("../webpack/builder");
+const { renderer } = require("./builder");
 
 const reader = new commonmark.Parser();
 
