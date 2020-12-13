@@ -45,24 +45,36 @@ page({
   hashbang: true,
 });
 
-document.getElementsByTagName("body")[0].onkeyup = (event) => {
-  if (event.key === "ArrowRight") {
-    document
-      .getElementsByClassName("arrow-right")[0]
-      .classList.remove("active");
-    page(`/${currentId + 1}`);
-  }
-  if (event.key === "ArrowLeft") {
-    document.getElementsByClassName("arrow-left")[0].classList.remove("active");
-    page(`/${currentId - 1}`);
+const slideTo = (id) => {
+  try {
+    // simple check to see if next exists
+    require(`${PATH}/${id}.md`); // eslint-disable-line
+    page(`/${id}`);
+  } catch (e) {
+    // ignore
   }
 };
-document.getElementsByTagName("body")[0].onkeydown = (event) => {
+
+const bodyEl = document.getElementsByTagName("body")[0];
+const arrowLeftEl = document.getElementsByClassName("arrow-left")[0];
+const arrowRightEl = document.getElementsByClassName("arrow-right")[0];
+
+bodyEl.onkeyup = (event) => {
   if (event.key === "ArrowRight") {
-    document.getElementsByClassName("arrow-right")[0].classList.add("active");
+    arrowRightEl.classList.remove("active");
+    slideTo(currentId + 1);
   }
   if (event.key === "ArrowLeft") {
-    document.getElementsByClassName("arrow-left")[0].classList.add("active");
+    arrowLeftEl.classList.remove("active");
+    slideTo(currentId - 1);
+  }
+};
+bodyEl.onkeydown = (event) => {
+  if (event.key === "ArrowRight") {
+    arrowRightEl.classList.add("active");
+  }
+  if (event.key === "ArrowLeft") {
+    arrowLeftEl.classList.add("active");
   }
 };
 
@@ -70,8 +82,10 @@ const handleClick = (event) => {
   const bodyEl = document.getElementsByClassName("slides")[0];
 
   if (event.target.tagName === "A") {
-    console.log(1);
+    // Do not interfere with links
+    return;
   } else if (bodyEl.contains(event.target)) {
+    // If It's anywhere else in the page
     const vw = Math.max(
       document.documentElement.clientWidth || 0,
       window.innerWidth || 0
@@ -79,11 +93,11 @@ const handleClick = (event) => {
     const median = vw / 2;
 
     if (event.clientX > median) {
-      document.getElementsByClassName("arrow-right")[0].classList.add("active");
-      page(`/${currentId + 1}`);
+      arrowRightEl.classList.add("active");
+      slideTo(currentId + 1);
     } else {
-      document.getElementsByClassName("arrow-left")[0].classList.add("active");
-      page(`/${currentId - 1}`);
+      arrowLeftEl.classList.add("active");
+      slideTo(currentId - 1);
     }
 
     return;
@@ -91,25 +105,25 @@ const handleClick = (event) => {
 };
 
 const clearAfterClick = () => {
-  document.getElementsByClassName("arrow-left")[0].classList.remove("active");
-  document.getElementsByClassName("arrow-right")[0].classList.remove("active");
+  arrowLeftEl.classList.remove("active");
+  arrowRightEl.classList.remove("active");
 };
 
-document.getElementsByClassName("arrow-right")[0].onclick = (event) => {
+arrowRightEl.onclick = (event) => {
   event.preventDefault();
-  document.getElementsByClassName("arrow-right")[0].classList.add("active");
-  page(`/${currentId + 1}`);
+  arrowRightEl.classList.add("active");
+  slideTo(currentId + 1);
   return;
 };
-document.getElementsByClassName("arrow-left")[0].onclick = (event) => {
+arrowLeftEl.onclick = (event) => {
   event.preventDefault();
-  document.getElementsByClassName("arrow-left")[0].classList.add("active");
-  page(`/${currentId - 1}`);
+  arrowLeftEl.classList.add("active");
+  slideTo(currentId - 1);
   return;
 };
 
-document.getElementsByTagName("body")[0].onmousedown = handleClick;
-document.getElementsByTagName("body")[0].ontouchstart = handleClick;
+bodyEl.onmousedown = handleClick;
+bodyEl.ontouchstart = handleClick;
 
-document.getElementsByTagName("body")[0].ontouchend = clearAfterClick;
-document.getElementsByTagName("body")[0].onmouseup = clearAfterClick;
+bodyEl.ontouchend = clearAfterClick;
+bodyEl.onmouseup = clearAfterClick;
