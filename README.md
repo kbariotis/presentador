@@ -9,6 +9,8 @@ With `Presentador`, you describe the content of each of your slides using Markdo
 
 There is only a single layout depending on the elements of your slide. `Presentador` parses the elements in each slide and assigns a certain pre-defined layout to it.
 
+See it in action. [Presentadors' website](https://www.presentador.dev) is a presentation itself. 🙂
+
 ## Installation
 
 ### Quick start
