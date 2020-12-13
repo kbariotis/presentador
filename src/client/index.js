@@ -27,6 +27,7 @@ page("/:id", showPage);
 page("*", notfound);
 page({
   hashbang: true,
+  click: false,
 });
 
 const slideTo = (id) => {
