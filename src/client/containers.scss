@@ -1,34 +1,36 @@
-.left-column-container {
-  @include padding(2rem);
+$base: 2rem;
 
-  @include padding-left(3.5rem);
+.left-column-container {
+  @include padding($base);
+
+  @include padding-left($base * 1.8);
 }
 
 .right-column-container {
-  @include padding(2rem);
+  @include padding($base);
 
-  @include padding-right(3.5rem);
+  @include padding-right($base * 1.8);
 }
 
 .top-row-container {
   box-shadow: 0px 2px 5px 1px rgba(0, 0, 0, 0.3);
 
-  @include padding(2rem);
+  @include padding($base);
 
-  @include padding-left(3.5rem);
-  @include padding-right(3.5rem);
+  @include padding-left($base * 1.8);
+  @include padding-right($base * 1.8);
 }
 
 .bottom-row-container {
-  @include padding(2rem);
+  @include padding($base);
 
-  @include padding-left(3.5rem);
-  @include padding-right(3.5rem);
+  @include padding-left($base * 1.8);
+  @include padding-right($base * 1.8);
 }
 
 .container {
-  @include padding(2rem);
+  @include padding($base);
 
-  @include padding(3.5rem);
-  @include padding(3.5rem);
+  @include padding($base * 1.8);
+  @include padding($base * 1.8);
 }
