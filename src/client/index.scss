@@ -51,6 +51,10 @@ h6 {
   @include rfs(2.7rem, line-height);
 }
 
+a {
+  color: #51c2f7;
+}
+
 .arrow {
   position: absolute;
   bottom: 50px;
