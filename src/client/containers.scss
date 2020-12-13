@@ -1,33 +1,13 @@
 .left-column-container {
   @include padding(2rem);
 
-  @media #{$mq-medium} {
-    @include padding-left(2.5rem);
-  }
-
-  @media #{$mq-large} {
-    @include padding-left(3rem);
-  }
-
-  @media #{$mq-xlarge} {
-    @include padding-left(3.5rem);
-  }
+  @include padding-left(3.5rem);
 }
 
 .right-column-container {
   @include padding(2rem);
 
-  @media #{$mq-medium} {
-    @include padding-right(2.5rem);
-  }
-
-  @media #{$mq-large} {
-    @include padding-right(3rem);
-  }
-
-  @media #{$mq-xlarge} {
-    @include padding-right(3.5rem);
-  }
+  @include padding-right(3.5rem);
 }
 
 .top-row-container {
@@ -35,56 +15,20 @@
 
   @include padding(2rem);
 
-  @media #{$mq-medium} {
-    @include padding-left(2.5rem);
-    @include padding-right(2.5rem);
-  }
-
-  @media #{$mq-large} {
-    @include padding-left(3rem);
-    @include padding-right(3rem);
-  }
-
-  @media #{$mq-xlarge} {
-    @include padding-left(3.5rem);
-    @include padding-right(3.5rem);
-  }
+  @include padding-left(3.5rem);
+  @include padding-right(3.5rem);
 }
 
 .bottom-row-container {
   @include padding(2rem);
 
-  @media #{$mq-medium} {
-    @include padding-left(2.5rem);
-    @include padding-right(2.5rem);
-  }
-
-  @media #{$mq-large} {
-    @include padding-left(3rem);
-    @include padding-right(3rem);
-  }
-
-  @media #{$mq-xlarge} {
-    @include padding-left(3.5rem);
-    @include padding-right(3.5rem);
-  }
+  @include padding-left(3.5rem);
+  @include padding-right(3.5rem);
 }
 
 .container {
   @include padding(2rem);
 
-  @media #{$mq-medium} {
-    @include padding(2.5rem);
-    @include padding(2.5rem);
-  }
-
-  @media #{$mq-large} {
-    @include padding(3rem);
-    @include padding(3rem);
-  }
-
-  @media #{$mq-xlarge} {
-    @include padding(3.5rem);
-    @include padding(3.5rem);
-  }
+  @include padding(3.5rem);
+  @include padding(3.5rem);
 }

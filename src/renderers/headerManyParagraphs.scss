@@ -12,7 +12,7 @@
   .top {
     @extend .top-row-container;
 
-    background-color: $blue;
+    background-color: $primary;
     flex: 1;
     display: flex;
 
@@ -35,7 +35,7 @@
 
     p {
       @include margin-bottom(1rem);
-      color: $textColor;
+      color: $lightText;
     }
   }
 }

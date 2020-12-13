@@ -27,11 +27,11 @@
       flex: 1;
       align-items: flex-end;
       display: flex;
-      color: $headingColor;
+      color: $darkText;
     }
 
     p {
-      color: $textColor;
+      color: $lightText;
       flex: 1;
     }
   }
@@ -39,7 +39,7 @@
   .right {
     @extend .right-column-container;
 
-    background-color: $blue;
+    background-color: $primary;
     flex: 1;
     align-items: center;
     display: flex;
