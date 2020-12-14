@@ -20,7 +20,9 @@ fullScreenEl.onmousedown = (event) => {
   event.preventDefault();
   fullScreenEl.classList.add("active");
 };
-fullScreenEl.onmouseup = () => {
+fullScreenEl.onmouseup = (event) => {
+  event.stopPropagation();
+
   fullScreenEl.classList.remove("active");
   if (screenfull.isEnabled) {
     exitFullScreenEl.classList.remove("hidden");
@@ -32,7 +34,9 @@ fullScreenEl.onmousedown = (event) => {
   event.preventDefault();
   fullScreenEl.classList.add("active");
 };
-exitFullScreenEl.onmouseup = () => {
+exitFullScreenEl.onmouseup = (event) => {
+  event.stopPropagation();
+
   exitFullScreenEl.classList.remove("active");
   if (screenfull.isEnabled) {
     fullScreenEl.classList.remove("hidden");

@@ -92,15 +92,19 @@ const handleClick = (event) => {
   }
 };
 
-const clearAfterClick = () => {
+const clearAfterClick = (event) => {
+  event.stopPropagation();
   arrowLeftEl.classList.remove("active");
   arrowRightEl.classList.remove("active");
 };
 
+arrowRightEl.onclick = (event) => event.preventDefault();
+arrowLeftEl.onclick = (event) => event.preventDefault();
 arrowRightEl.onmouseup = clearAfterClick;
 arrowLeftEl.onmouseup = clearAfterClick;
 
 arrowRightEl.onmousedown = (event) => {
+  event.stopPropagation();
   event.preventDefault();
   arrowRightEl.classList.add("active");
   slideTo(currentId + 1);
