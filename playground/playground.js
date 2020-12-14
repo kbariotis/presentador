@@ -1,5 +1,5 @@
 const codeMirror = require("codemirror");
-const renderSlide = require("../src/client/renderSlide");
+const { renderSlide } = require("../src/client/renderSlide");
 const compiler = require("../src/compiler");
 
 require("codemirror/lib/codemirror.css");
