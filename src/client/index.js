@@ -120,7 +120,4 @@ arrowLeftEl.onmousedown = (event) => {
 };
 
 bodyEl.onmousedown = handleClick;
-bodyEl.ontouchstart = handleClick;
-
-bodyEl.ontouchend = clearAfterClick;
 bodyEl.onmouseup = clearAfterClick;
