@@ -1,9 +1,10 @@
-const screenfull = require("screenfull");
+require("./island/fullscreen");
+
 const page = require("page");
 
-let currentId = 1;
-
 const renderSlide = require("./renderSlide");
+
+let currentId = 1;
 
 function showPage(props) {
   if (props.params.id) {
@@ -44,7 +45,6 @@ const slideTo = (id) => {
 const bodyEl = document.getElementsByTagName("body")[0];
 const arrowLeftEl = document.getElementsByClassName("arrow-left")[0];
 const arrowRightEl = document.getElementsByClassName("arrow-right")[0];
-const fullScreenEl = document.getElementsByClassName("arrow-fullscreen")[0];
 
 bodyEl.onkeyup = (event) => {
   if (event.key === "ArrowRight") {
@@ -99,19 +99,7 @@ const clearAfterClick = () => {
 
 arrowRightEl.onmouseup = clearAfterClick;
 arrowLeftEl.onmouseup = clearAfterClick;
-arrowRightEl.onclick = (event) => event.preventDefault();
-arrowLeftEl.onclick = (event) => event.preventDefault();
-fullScreenEl.onclick = (event) => event.preventDefault();
-fullScreenEl.onmouseup = () => {
-  fullScreenEl.classList.remove("active");
-  if (screenfull.isEnabled) {
-    screenfull.request();
-  }
-};
-fullScreenEl.onmousedown = (event) => {
-  event.preventDefault();
-  fullScreenEl.classList.add("active");
-};
+
 arrowRightEl.onmousedown = (event) => {
   event.preventDefault();
   arrowRightEl.classList.add("active");

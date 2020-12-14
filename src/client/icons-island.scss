@@ -8,6 +8,10 @@
     display: inline-block;
     @include rfs(0.5rem, margin-left);
 
+    &.hidden {
+      display: none;
+    }
+
     svg {
       @include rfs(4rem, height);
       @include rfs(4rem, width);
