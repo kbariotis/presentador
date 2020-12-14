@@ -2,7 +2,7 @@ require("./island/fullscreen");
 
 const page = require("page");
 
-const renderSlide = require("./renderSlide");
+const { renderSlide, renderNotFoundSlide } = require("./renderSlide");
 
 let currentId = 1;
 
@@ -15,13 +15,15 @@ function showPage(props) {
 
       currentId = parseInt(props.params.id, 10);
     } catch (error) {
-      console.error(error);
+      if (error.toString().includes("Cannot find module")) {
+        notfound();
+      }
     }
   }
 }
 
-function notfound(props) {
-  console.log("notfound", props);
+function notfound() {
+  renderNotFoundSlide(document.getElementsByClassName("slides")[0]);
 }
 
 page("/", () => page("/1"));
