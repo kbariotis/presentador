@@ -4,9 +4,12 @@
     <meta charset="utf-8"/>
     <title>Presentation</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <% headAssets.forEach(function(asset){ %>
+      <link rel="stylesheet" type="text/css" href="/<%= asset %>">
+    <% }); %>
   </head>
   <body>
-    <div class="slides"></div>
+    <%- html %>
     <div class="icons">
       <a href="#" class="arrow-left">
         <svg id="Capa_1" enable-background="new 0 0 451.111 451.111" height="512" viewBox="0 0 451.111 451.111" width="512" xmlns="http://www.w3.org/2000/svg"><path d="m451.111 193.333h-322.222l112.778-112.777-48.333-48.333-193.334 193.333 193.333 193.333 48.333-48.333-112.777-112.778h322.222z"/></svg>
@@ -21,5 +24,8 @@
         <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 95 95" enable-background="new 0 0 100 100" xml:space="preserve"><g><g><polygon points="100,38.617 67.384,38.617 67.384,6 82.055,6 82.055,23.946 100,23.946"/></g><g><polygon points="82.055,95.829 67.384,95.829 67.384,63.213 100,63.213 100,77.884 82.055,77.884"/></g><g><polygon points="32.616,95.829 17.946,95.829 17.946,77.884 0,77.884 0,63.213 32.616,63.213"/></g><g><polygon points="32.616,38.617 0,38.617 0,23.946 17.946,23.946 17.946,6 32.616,6"/></g></g></svg>
       </a>
     </div>
+    <% scriptAssets.forEach(function(asset){ %>
+      <script src="/<%= asset %>"></script>
+    <% }); %>
   </body>
 </html>
