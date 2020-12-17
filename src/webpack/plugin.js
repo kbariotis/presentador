@@ -1,3 +1,4 @@
+const { Compilation } = require("webpack");
 const { parse } = require("node-html-parser");
 const vm = require("vm");
 const path = require("path");
@@ -19,60 +20,56 @@ const parseMetadata = (htmlSourceCode) => {
 
 module.exports = class PresentadorPlugin {
   apply(compiler) {
-    compiler.hooks.emit.tapAsync(
-      "PresentadorPlugin",
-      (compilation, callback) => {
-        const metadata = parseMetadata(
-          Object.keys(store)
-            .sort()
-            .map((id) => store[id].html)
-            .join("")
-        );
-        Object.keys(compilation.assets)
-          .filter((file) => file.indexOf("-md.") > -1)
-          .map((file) => {
-            const filename = path.basename(file, path.extname(file));
-            const number = filename.replace(/\-md\..*/, ""); // eslint-disable-line
-            const content = store[number];
+    compiler.hooks.compilation.tap("PresentadorPlugin", (compilation) => {
+      compilation.hooks.processAssets.tap(
+        {
+          name: "MyPlugin",
+          stage: Compilation.PROCESS_ASSETS_STAGE_ADDITIONS, // see below for more stages
+        },
+        (assets) => {
+          const metadata = parseMetadata(
+            Object.keys(store)
+              .sort()
+              .map((id) => store[id].html)
+              .join("")
+          );
+          Object.keys(assets)
+            .filter((file) => file.indexOf("-md.") > -1)
+            .map((file) => {
+              const filename = path.basename(file, path.extname(file));
+              const number = filename.replace(/\-md\..*/, ""); // eslint-disable-line
+              const content = store[number];
 
-            compilation.fileDependencies.add(`${number}.html`);
-            const headAssets = ["main", `${content.state}-scss`];
-            const scriptAssets = ["vendor", "main", `${content.state}-scss`];
-            const htmlTemplate = fs.readFileSync(
-              path.resolve(`${__dirname}/index.html`),
-              { encoding: "utf-8" }
-            );
+              compilation.fileDependencies.add(`${number}.html`);
+              const headAssets = ["main", `${content.state}-scss`];
+              const scriptAssets = ["vendor", "main", `${content.state}-scss`];
+              const htmlTemplate = fs.readFileSync(
+                path.resolve(`${__dirname}/index.html`),
+                { encoding: "utf-8" }
+              );
 
-            const htmlString = ejs.render(htmlTemplate, {
-              metadata,
-              headAssets: Object.keys(compilation.assets).filter(
-                (asset) =>
-                  headAssets.filter(
-                    (term) =>
-                      asset.indexOf(term) > -1 && asset.indexOf(".css") > -1
-                  ).length
-              ),
-              scriptAssets: Object.keys(compilation.assets).filter(
-                (asset) =>
-                  scriptAssets.filter(
-                    (term) =>
-                      asset.indexOf(term) > -1 && asset.indexOf(".js") > -1
-                  ).length
-              ),
-              html: content.html,
-            });
+              const htmlString = ejs
+                .render(htmlTemplate, {
+                  metadata,
+                  headAssets: Object.keys(compilation.assets).filter(
+                    (asset) =>
+                      headAssets.filter(
+                        (term) =>
+                          asset.indexOf(term) > -1 && asset.indexOf(".css") > -1
+                      ).length
+                  ),
+                  scriptAssets: Object.keys(compilation.assets).filter(
+                    (asset) =>
+                      scriptAssets.filter(
+                        (term) =>
+                          asset.indexOf(term) > -1 && asset.indexOf(".js") > -1
+                      ).length
+                  ),
+                  html: content.html,
+                })
+                .replace(/\>[\r\n ]+\</g, "><"); // eslint-disable-line
 
-            compilation.assets[`${number}.html`] = {
-              source: () => {
-                return Buffer.from(htmlString, "utf8");
-              },
-              size: () => {
-                return Buffer.byteLength(htmlString, "utf8");
-              },
-            };
-
-            if (number === "1") {
-              compilation.assets["index.html"] = {
+              compilation.assets[`${number}.html`] = {
                 source: () => {
                   return Buffer.from(htmlString, "utf8");
                 },
@@ -80,13 +77,20 @@ module.exports = class PresentadorPlugin {
                   return Buffer.byteLength(htmlString, "utf8");
                 },
               };
-            }
-          });
 
-        callback();
-      }
-    );
-    compiler.hooks.compilation.tap("PresentadorPlugin", (compilation) => {
+              if (number === "1") {
+                compilation.assets["index.html"] = {
+                  source: () => {
+                    return Buffer.from(htmlString, "utf8");
+                  },
+                  size: () => {
+                    return Buffer.byteLength(htmlString, "utf8");
+                  },
+                };
+              }
+            });
+        }
+      );
       compilation.hooks.succeedModule.tap("PresentadorPlugin", (module) => {
         if (module.request && module.request.indexOf(".md") > -1) {
           const sandbox = {

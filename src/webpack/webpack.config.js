@@ -32,8 +32,8 @@ module.exports = (env) => {
       ],
     },
     output: {
-      filename: "[name].[hash].js",
-      chunkFilename: "[name].[hash].js",
+      filename: "[name].[fullhash].js",
+      chunkFilename: "[name].[fullhash].js",
     },
     optimization: {
       splitChunks: {

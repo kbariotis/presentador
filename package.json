@@ -6,8 +6,8 @@
   },
   "license": "MIT",
   "scripts": {
-    "dev": "webpack serve -c src/webpack/webpack.config.js --watch",
-    "playground": "webpack serve -c playground/webpack.config.js --watch",
+    "dev": "webpack serve -c src/webpack/webpack.config.js",
+    "playground": "webpack serve -c playground/webpack.config.js",
     "lint": "eslint --fix .",
     "test": "jest"
   },
