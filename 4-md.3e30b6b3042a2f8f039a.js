@@ -1,0 +1,1 @@
+(self.webpackChunkpresentador=self.webpackChunkpresentador||[]).push([[192],{470:e=>{e.exports={html:'<div class="slides headerParagraphImage"><div class="left"><h3>For example</h3>\n<p>decided to put that image on the right.</p>\n</div><div class="right"><img src="https://via.placeholder.com/550" alt="Placeholder Image" /></div></div>',state:"headerParagraphImage"}}}]);
