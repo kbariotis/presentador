@@ -9,17 +9,10 @@ const store = {};
 const parseMetadata = (htmlSourceCode) => {
   const fullHTML = parse(htmlSourceCode);
 
-  let title;
-  let description;
+  const fullText = fullHTML.text.replace(/\r\n|\n/g, " ");
 
-  const h1s = fullHTML.querySelectorAll("h1");
-  if (h1s.length) {
-    title = h1s[0].text;
-  }
-
-  description = `${fullHTML.text
-    .replace(/\r\n|\n/g, " ")
-    .substring(0, 120)}...`;
+  const title = `${fullText.split(" ").slice(0, 10).join(" ")}...`;
+  const description = `... ${fullText.split(" ").slice(10, 30).join(" ")} ...`;
 
   return { title, description };
 };
