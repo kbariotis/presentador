@@ -1,3 +1,4 @@
+const { parse } = require("node-html-parser");
 const vm = require("vm");
 const path = require("path");
 const ejs = require("ejs");
@@ -5,11 +6,35 @@ const fs = require("fs");
 
 const store = {};
 
+const parseMetadata = (htmlSourceCode) => {
+  const fullHTML = parse(htmlSourceCode);
+
+  let title;
+  let description;
+
+  const h1s = fullHTML.querySelectorAll("h1");
+  if (h1s.length) {
+    title = h1s[0].text;
+  }
+
+  description = `${fullHTML.text
+    .replace(/\r\n|\n/g, " ")
+    .substring(0, 120)}...`;
+
+  return { title, description };
+};
+
 module.exports = class PresentadorPlugin {
   apply(compiler) {
     compiler.hooks.emit.tapAsync(
       "PresentadorPlugin",
       (compilation, callback) => {
+        const metadata = parseMetadata(
+          Object.keys(store)
+            .sort()
+            .map((id) => store[id].html)
+            .join("")
+        );
         Object.keys(compilation.assets)
           .filter((file) => file.indexOf("-md.") > -1)
           .map((file) => {
@@ -26,6 +51,7 @@ module.exports = class PresentadorPlugin {
             );
 
             const htmlString = ejs.render(htmlTemplate, {
+              metadata,
               headAssets: Object.keys(compilation.assets).filter(
                 (asset) =>
                   headAssets.filter(
