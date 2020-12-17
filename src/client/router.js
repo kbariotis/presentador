@@ -50,22 +50,22 @@ function notfound() {
   renderNotFoundSlide(document.getElementsByClassName("slides")[0]);
 }
 
-page("/", () => slideTo(1));
-page("/:id.html", showPage);
-page("*", notfound);
-page({
-  // hashbang: true,
-  click: false,
-});
-
 export const slideTo = (id) => {
   // simple check to see if next exists
   import(`${PATH}/${id}.md`)
     .then(() => {
-      page(`/${id}.html`);
+      page(`/${id}`);
     })
     .catch((error) => console.error(error));
 };
 
 export const slideNext = () => slideTo(currentId + 1);
 export const slidePrev = () => slideTo(currentId - 1);
+
+page("/", () => showPage({ params: { id: 1 } }));
+page("/:id", showPage);
+page("*", notfound);
+page({
+  // hashbang: true,
+  click: false,
+});

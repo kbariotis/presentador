@@ -32,14 +32,17 @@ module.exports = (env) => {
       ],
     },
     output: {
-      filename: "[name].bundle.js",
-      chunkFilename: "[name].chunk.js",
+      filename: "[name].[hash].js",
+      chunkFilename: "[name].[hash].js",
     },
     optimization: {
       splitChunks: {
         chunks: "all",
         name: "vendor",
       },
+    },
+    devServer: {
+      historyApiFallback: true,
     },
     plugins: [
       new webpack.DefinePlugin({

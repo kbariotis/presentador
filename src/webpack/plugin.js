@@ -14,29 +14,36 @@ module.exports = class PresentadorPlugin {
           .filter((file) => file.indexOf("-md.") > -1)
           .map((file) => {
             const filename = path.basename(file, path.extname(file));
-            const content = store[filename.substring(0, 1)];
+            const number = filename.replace(/\-md\..*/, ""); // eslint-disable-line
+            const content = store[number];
 
-            compilation.fileDependencies.add(
-              `${filename.substring(0, 1)}.html`
-            );
-            const headAssets = ["main.css", `${content.state}-scss.css`];
-            const scriptAssets = [
-              "vendor.bundle.js",
-              "main.bundle.js",
-              `${content.state}-scss.chunk.js`,
-            ];
+            compilation.fileDependencies.add(`${number}.html`);
+            const headAssets = ["main", `${content.state}-scss`];
+            const scriptAssets = ["vendor", "main", `${content.state}-scss`];
             const htmlTemplate = fs.readFileSync(
               path.resolve(`${__dirname}/index.html`),
               { encoding: "utf-8" }
             );
 
             const htmlString = ejs.render(htmlTemplate, {
-              headAssets,
-              scriptAssets,
+              headAssets: Object.keys(compilation.assets).filter(
+                (asset) =>
+                  headAssets.filter(
+                    (term) =>
+                      asset.indexOf(term) > -1 && asset.indexOf(".css") > -1
+                  ).length
+              ),
+              scriptAssets: Object.keys(compilation.assets).filter(
+                (asset) =>
+                  scriptAssets.filter(
+                    (term) =>
+                      asset.indexOf(term) > -1 && asset.indexOf(".js") > -1
+                  ).length
+              ),
               html: content.html,
             });
 
-            compilation.assets[`${filename.substring(0, 1)}.html`] = {
+            compilation.assets[`${number}.html`] = {
               source: () => {
                 return Buffer.from(htmlString, "utf8");
               },
@@ -44,6 +51,17 @@ module.exports = class PresentadorPlugin {
                 return Buffer.byteLength(htmlString, "utf8");
               },
             };
+
+            if (number === "1") {
+              compilation.assets["index.html"] = {
+                source: () => {
+                  return Buffer.from(htmlString, "utf8");
+                },
+                size: () => {
+                  return Buffer.byteLength(htmlString, "utf8");
+                },
+              };
+            }
           });
 
         callback();
