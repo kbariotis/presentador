@@ -1,6 +1,14 @@
 <h1 align="center" style="border-bottom: none;">📽 Presentador</h1>
 <h3 align="center">An opinionated presentation framework. Just write what you want to present and it will do the rest.</h3>
 
+<div align="center">
+
+![Workflow state](https://github.com/kbariotis/presentador/workflows/Release/badge.svg)
+![npm downloads](https://img.shields.io/npm/dw/presentador?label=npm%20downloads)
+![npm downloads](https://img.shields.io/npm/v/presentador?label=npm%20version)
+
+</div>
+
 ![Presentador Demo](./assets/demo.gif)
 
 ## Description
