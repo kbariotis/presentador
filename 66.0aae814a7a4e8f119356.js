@@ -1,0 +1,1 @@
+(self.webpackChunkpresentador=self.webpackChunkpresentador||[]).push([[66],{768:(e,r,t)=>{const a=t(802);t(954),a.registerLanguage("javascript",t(344)),a.registerLanguage("markdown",t(839)),e.exports=()=>{const e=document.querySelectorAll("pre code");e.length&&a.highlightBlock(e[0])}}}]);

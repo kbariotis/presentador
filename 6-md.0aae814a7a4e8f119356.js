@@ -1,0 +1,1 @@
+(self.webpackChunkpresentador=self.webpackChunkpresentador||[]).push([[689],{81:e=>{e.exports={html:'<div class="slides singleHeader"><div class="container"><h1>Presentador is simple, no code or configuration required to build a presentation</h1>\n</div></div>',state:"singleHeader"}}}]);
