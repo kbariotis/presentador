@@ -66,7 +66,10 @@ require("yargs/yargs")(process.argv.slice(2))
       });
       const compiler = webpack(config);
 
-      const server = new WebpackDevServer(compiler);
+      const server = new WebpackDevServer(
+        compiler,
+        Object.assign({}, config.devServer)
+      );
 
       server.listen(8080, "127.0.0.1", () => {
         console.log("Starting server on http://localhost:8080");

@@ -1,12 +1,13 @@
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const webpack = require("webpack");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
 const path = require("path");
+
+const PresentadorPlugin = require("./plugin");
 
 module.exports = (env) => {
   const config = {
     mode: env.production ? "production" : "development",
-    entry: path.resolve(`${__dirname}/../client/index.js`),
+    entry: path.resolve(`${__dirname}/../client`),
     module: {
       rules: [
         {
@@ -31,7 +32,8 @@ module.exports = (env) => {
       ],
     },
     output: {
-      filename: "[name].bundle.js",
+      filename: "[name].[hash].js",
+      chunkFilename: "[name].[hash].js",
     },
     optimization: {
       splitChunks: {
@@ -39,13 +41,14 @@ module.exports = (env) => {
         name: "vendor",
       },
     },
+    devServer: {
+      historyApiFallback: true,
+    },
     plugins: [
       new webpack.DefinePlugin({
         PATH: JSON.stringify(path.resolve("website/")),
       }),
-      new HtmlWebpackPlugin({
-        template: path.resolve(`${__dirname}/index.html`),
-      }),
+      new PresentadorPlugin(),
     ],
   };
   if (env.production) {

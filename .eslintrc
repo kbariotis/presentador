@@ -1,7 +1,9 @@
 {
   "extends": ["eslint:recommended","prettier"],
   "parserOptions": {
-    "ecmaVersion": 2017
+    "ecmaVersion": 11,
+    "sourceType": "module",
+    "allowImportExportEverywhere": true
   },
   "env": {
     "es6": true,
