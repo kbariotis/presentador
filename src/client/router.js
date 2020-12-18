@@ -8,37 +8,44 @@ let currentId = 1;
 
 function showPage(props) {
   if (props.params.id) {
-    import(
-      /* webpackChunkName: "[request]" */
-      /* webpackPrefetch: true */ `${PATH}/${
-        parseInt(props.params.id, 10) - 1
-      }.md`
-    ).then((module) => {
-      import(
-        /* webpackChunkName: "[request]" */ /* webpackPrefetch: true */ `../renderers/${module.state}.scss`
-      );
-    });
-    import(
-      /* webpackChunkName: "[request]" */
-      /* webpackPrefetch: true */ `${PATH}/${
-        parseInt(props.params.id, 10) + 1
-      }.md`
-    ).then((module) => {
-      import(
-        /* webpackChunkName: "[request]" */ /* webpackPrefetch: true */ `../renderers/${module.state}.scss`
-      );
-    });
+    // Fetch the current slide
+    // Not very sophisticated because the slide is rendered already
     import(/* webpackChunkName: "[request]" */ `${PATH}/${props.params.id}.md`)
       .then((module) => {
+        // attach slide to the DOM
         renderSlide(
           document.getElementsByClassName("slides")[0],
           module.state,
           module.html
         );
         currentId = parseInt(props.params.id, 10);
+
+        // Prefetch next/previous slides
+        import(
+          /* webpackChunkName: "[request]" */
+          /* webpackPrefetch: true */ `${PATH}/${
+            parseInt(props.params.id, 10) - 1
+          }.md`
+        ).then((module) => {
+          import(
+            /* webpackChunkName: "[request]" */
+            /* webpackPrefetch: true */
+            `../renderers/${module.state}.scss`
+          );
+        });
+        import(
+          /* webpackChunkName: "[request]" */
+          /* webpackPrefetch: true */
+          `${PATH}/${parseInt(props.params.id, 10) + 1}.md`
+        ).then((module) => {
+          import(
+            /* webpackChunkName: "[request]" */
+            /* webpackPrefetch: true */
+            `../renderers/${module.state}.scss`
+          );
+        });
       })
       .catch((error) => {
-        console.log(error);
         if (error.toString().includes("Cannot find module")) {
           notfound();
         }
