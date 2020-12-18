@@ -29,7 +29,15 @@ Write common Markdown in each slide, add your headers, paragraphs, images, etc. 
 
 Then run:
 
-`npx presentador serve -d FOLDER`
+`npx presentador develop -d FOLDER`
+
+A local server will start in development mode where you can start writing your presentation and changes will reflect immidiately in your browser.
+
+When you're done, run:
+
+`npx presentador build -d FOLDER`
+
+And that will produce a static site with your presentation ready to be hosted anywhere.
 
 ### Install locally
 
@@ -43,7 +51,9 @@ Then add it to your `package.json`s' `scripts` section:
 
 ```JSON
 "scripts": {
-  "presentador": "presentador ..."
+  "build": "presentador build -d slides/",
+  "develop": "presentador develop -d slides/",
+  "serve": "presentador serve -d slides/"
 }
 ```
 
@@ -51,7 +61,7 @@ Then add it to your `package.json`s' `scripts` section:
 
 ### Commands
 
-There are two commands currently:
+There are three commands currently:
 
 #### `> build`
 
@@ -59,11 +69,15 @@ To build your presentation and output the final artifacts that you can host anyw
 
 #### `> serve`
 
+To serve your presentation from your own machine.
+
+#### `> develop`
+
 To develop locally your presentation.
 
 ### Input
 
-In both cases above, you need to pass a directory with a list of Markdown files.
+In all cases above, you need to pass a directory with a list of Markdown files.
 
 `> presentador build -d slides/`
 

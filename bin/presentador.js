@@ -1,9 +1,8 @@
 #!/usr/bin/env node
 
-const webpack = require("webpack");
-const path = require("path");
-const getConfig = require("../src/webpack/webpack.config.js");
-const WebpackDevServer = require("webpack-dev-server");
+const { build } = require("./../src/cli/build");
+const { develop } = require("./../src/cli/develop");
+const { present } = require("./../src/cli/present");
 
 require("yargs/yargs")(process.argv.slice(2))
   .usage("Usage: $0 [command]")
@@ -15,68 +14,36 @@ require("yargs/yargs")(process.argv.slice(2))
       directory: {
         alias: "d",
         demandOption: true,
-        default: ".",
       },
     },
-    async (argv) => {
-      const config = getConfig({ production: true });
-      config.plugins[0] = new webpack.DefinePlugin({
-        PATH: JSON.stringify(path.resolve(argv.directory)),
-      });
-      const compiler = webpack(config);
-
-      const stats = await new Promise((resolve, reject) => {
-        compiler.run((err, stats) => {
-          if (err) reject(err);
-          if (stats && stats.hasErrors()) {
-            console.log(stats.toJson());
-            reject(new Error(stats.toJson().errors));
-          }
-
-          resolve(stats);
-        });
-      });
-
-      const info = stats.toJson();
-
-      if (stats && stats.hasErrors()) {
-        console.error(info.errors);
-      }
-
-      if (stats && stats.hasWarnings()) {
-        console.warn(info.warnings);
-      }
-    }
+    (argv) => build(argv.directory)
   )
-  .example("$0 serve -d src/", "Serve and develop locally your presentation")
+  .example(
+    "$0 serve -d src/",
+    "Serve your presentation right from your local host"
+  )
   .command(
-    "serve",
+    "present",
+    "Present your presentation",
+    {
+      directory: {
+        alias: "d",
+        demandOption: true,
+      },
+    },
+    (argv) => present(argv.directory)
+  )
+  .example("$0 develop -d src/", "Serve and develop locally your presentation")
+  .command(
+    "develop",
     "Develop your presentation",
     {
       directory: {
         alias: "d",
         demandOption: true,
-        default: ".",
       },
     },
-    async (argv) => {
-      const config = getConfig({});
-      config.plugins[0] = new webpack.DefinePlugin({
-        PATH: JSON.stringify(path.resolve(argv.directory)),
-      });
-      const compiler = webpack(config);
-
-      const server = new WebpackDevServer(
-        compiler,
-        Object.assign({}, config.devServer, { noInfo: true })
-      );
-
-      server.listen(8080, "127.0.0.1", () => {
-        console.log(
-          "📽 Presentation is ready to be viewed on http://localhost:8080"
-        );
-      });
-    }
+    (argv) => develop(argv.directory)
   )
   .help("h")
   .demandCommand(1)
