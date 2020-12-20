@@ -8,9 +8,11 @@
     <% headAssets.forEach(function(asset){ %>
       <link rel="stylesheet" type="text/css" href="/<%= asset %>">
     <% }); %>
+    <script>window.__presentador_slides__ = <%- slides %></script>
   </head>
   <body>
     <%- html %>
+    <div class="pos"></div>
     <div class="icons">
       <a href="#" class="arrow-left">
         <svg id="Capa_1" enable-background="new 0 0 451.111 451.111" height="512" viewBox="0 0 451.111 451.111" width="512" xmlns="http://www.w3.org/2000/svg"><path d="m451.111 193.333h-322.222l112.778-112.777-48.333-48.333-193.334 193.333 193.333 193.333 48.333-48.333-112.777-112.778h322.222z"/></svg>

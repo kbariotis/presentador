@@ -1,4 +1,4 @@
-/*global PATH */
+/*global PATH, __presentador_slides__ */
 
 const page = require("page");
 
@@ -18,32 +18,40 @@ function showPage(props) {
           module.state,
           module.html
         );
+        document.getElementsByClassName(
+          "pos"
+        )[0].innerText = `${props.params.id} / ${__presentador_slides__.length}`;
+
         currentId = parseInt(props.params.id, 10);
 
-        // Prefetch next/previous slides
-        import(
-          /* webpackChunkName: "[request]" */
-          /* webpackPrefetch: true */ `${PATH}/${
-            parseInt(props.params.id, 10) - 1
-          }.md`
-        ).then((module) => {
+        const prevNumber = parseInt(props.params.id, 10) - 1;
+        const nextNumber = parseInt(props.params.id, 10) + 1;
+        if (__presentador_slides__.includes(prevNumber)) {
+          // Prefetch next/previous slides
+          import(
+            /* webpackChunkName: "[request]" */
+            /* webpackPrefetch: true */ `${PATH}/${prevNumber}.md`
+          ).then((module) => {
+            import(
+              /* webpackChunkName: "[request]" */
+              /* webpackPrefetch: true */
+              `../renderers/${module.state}.scss`
+            );
+          });
+        }
+        if (__presentador_slides__.includes(nextNumber)) {
           import(
             /* webpackChunkName: "[request]" */
             /* webpackPrefetch: true */
-            `../renderers/${module.state}.scss`
-          );
-        });
-        import(
-          /* webpackChunkName: "[request]" */
-          /* webpackPrefetch: true */
-          `${PATH}/${parseInt(props.params.id, 10) + 1}.md`
-        ).then((module) => {
-          import(
-            /* webpackChunkName: "[request]" */
-            /* webpackPrefetch: true */
-            `../renderers/${module.state}.scss`
-          );
-        });
+            `${PATH}/${nextNumber}.md`
+          ).then((module) => {
+            import(
+              /* webpackChunkName: "[request]" */
+              /* webpackPrefetch: true */
+              `../renderers/${module.state}.scss`
+            );
+          });
+        }
       })
       .catch((error) => {
         if (error.toString().includes("Cannot find module")) {
@@ -58,12 +66,9 @@ function notfound() {
 }
 
 export const slideTo = (id) => {
-  // simple check to see if next exists
-  import(`${PATH}/${id}.md`)
-    .then(() => {
-      page(`/${id}`);
-    })
-    .catch((error) => console.error(error));
+  if (__presentador_slides__.includes(id)) {
+    page(`/${id}`);
+  }
 };
 
 export const slideNext = () => slideTo(currentId + 1);
@@ -73,6 +78,5 @@ page("/", () => showPage({ params: { id: 1 } }));
 page("/:id", showPage);
 page("*", notfound);
 page({
-  // hashbang: true,
   click: false,
 });

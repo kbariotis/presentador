@@ -74,6 +74,9 @@ module.exports = class PresentadorPlugin {
             // render the template
             const htmlString = ejs
               .render(htmlTemplate, {
+                slides: JSON.stringify(
+                  Array.from(store.keys()).map((number) => parseInt(number, 10))
+                ),
                 metadata,
                 headAssets: findCSSFiles(assets, headAssets),
                 scriptAssets: findJSFiles(assets, scriptAssets),

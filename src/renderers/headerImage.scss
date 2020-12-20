@@ -3,6 +3,7 @@
 
 .headerImage {
   @include dark-arrows;
+  @include dark-pos;
 
   min-height: 100%;
   display: flex;

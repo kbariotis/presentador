@@ -54,3 +54,13 @@ h6 {
 a {
   color: #51c2f7;
 }
+
+.pos {
+  position: absolute;
+
+  @include rfs(2rem, bottom);
+  @include rfs(2rem, left);
+
+  @include rfs(4rem, font-size);
+  @include rfs(4.5rem, line-height);
+}

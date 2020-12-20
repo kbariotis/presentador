@@ -52,3 +52,15 @@
     }
   }
 }
+
+@mixin light-pos {
+  & ~ .pos {
+    color: rgba(255, 255, 255, 0.3);
+  }
+}
+
+@mixin dark-pos {
+  & ~ .pos {
+    color: rgba(0, 0, 0, 0.3);
+  }
+}
