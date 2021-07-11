@@ -1,20 +1,20 @@
 .icons {
   position: absolute;
 
-  @include rfs(2rem, bottom);
-  @include rfs(2rem, right);
+  @include rfs(4rem, bottom);
+  @include rfs(4rem, right);
 
   a {
     display: inline-block;
-    @include rfs(0.5rem, margin-left);
+    @include rfs(1rem, margin-left);
 
     &.hidden {
       display: none;
     }
 
     svg {
-      @include rfs(4rem, height);
-      @include rfs(4rem, width);
+      @include rfs(8rem, height);
+      @include rfs(8rem, width);
     }
   }
 }

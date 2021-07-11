@@ -4,6 +4,10 @@
 
 @import "./vars.scss";
 
+$rfs-base-value: 0.5rem;
+$rfs-breakpoint: 3200px;
+$rfs-factor: 20;
+
 @import "~rfs/scss";
 
 * {
@@ -18,8 +22,8 @@ body {
 body {
   font-family: "Roboto", sans-serif;
 
-  @include font-size(1.5rem);
-  @include rfs(2rem, line-height);
+  @include font-size(3.5rem);
+  @include rfs(4rem, line-height);
 }
 
 .slides {
@@ -27,28 +31,28 @@ body {
 }
 
 h1 {
-  @include font-size(4rem);
-  @include rfs(4.5rem, line-height);
+  @include font-size(8rem);
+  @include rfs(8.5rem, line-height);
 }
 h2 {
-  @include font-size(3.5rem);
-  @include rfs(4rem, line-height);
+  @include font-size(7.5rem);
+  @include rfs(8rem, line-height);
 }
 h3 {
-  @include font-size(3rem);
-  @include rfs(3.5rem, line-height);
+  @include font-size(7rem);
+  @include rfs(7.5rem, line-height);
 }
 h4 {
-  @include font-size(2.7rem);
-  @include rfs(3.2rem, line-height);
+  @include font-size(6.7rem);
+  @include rfs(7.2rem, line-height);
 }
 h5 {
-  @include font-size(2.3rem);
-  @include rfs(2.8rem, line-height);
+  @include font-size(6.3rem);
+  @include rfs(6.8rem, line-height);
 }
 h6 {
-  @include font-size(2rem);
-  @include rfs(2.7rem, line-height);
+  @include font-size(6rem);
+  @include rfs(6.7rem, line-height);
 }
 
 a {
